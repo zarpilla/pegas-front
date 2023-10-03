@@ -29,7 +29,7 @@ activityStore.loadSession(props.sessionId).then((ss: any) => {
     <p>{{ session.attributes.date }}</p>
 
     <QRCodeVue3
-          :value="`https://app.pegasdefoc.org/assistance/${session.id}`"
+          :value="`https://app.pegasdefoc.org/assistance/${session.attributes.uuid}`"
         />
   </div>
 </template>
