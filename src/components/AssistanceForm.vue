@@ -19,6 +19,7 @@ const form = reactive({
   municipality: "",
   sex: "",
   gender: "",
+  session: ""
 });
 
 const emit = defineEmits<{
@@ -34,13 +35,13 @@ const submit = async () => {
       return;
     }
 
+    form.session = props.sessionId;
+
     const { data } = await service({ requiresAuth: false }).post(
       "registrations",
       { data: { ...form } }
     );
     if (data && data.data && data.data.id) {
-      console.log("data", data, signature);
-
       saveImage(data.data.id, signature);
 
       emit("submit");
