@@ -23,10 +23,10 @@ activityStore.loadSession(props.sessionId).then((ss: any) => {
 
 <template>
   <div v-if="session && activity">
-    <h2>{{ activity.attributes.name }}</h2>
-    <p>{{ activity.attributes.description }}</p>
-    <h4>{{ session.attributes.name }}</h4>
-    <p>{{ session.attributes.date }}</p>
+    <!-- <h2>{{ activity.attributes.name }}</h2>
+    <p>{{ activity.attributes.description }}</p> -->
+    <h4 class="mb-5">{{ session.attributes.name }}</h4>
+    <!-- <p>{{ session.attributes.date }}</p> -->
 
     <QRCodeVue3
           :value="`https://app.pegasdefoc.org/assistance/${session.attributes.uuid}`"
