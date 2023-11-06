@@ -19,7 +19,10 @@ const form = reactive({
   municipality: "",
   sex: "",
   gender: "",
-  session: ""
+  session: "",
+  drets: false,
+  phone: "",
+  email: "",
 });
 
 const emit = defineEmits<{
@@ -144,7 +147,7 @@ const save = () => {
     </div>
     <div class="mb-3">
       <label for="identification" class="form-label"
-        >Número de document identificatiu</label
+        >Número de document identificatiu (DNI/NIE/Passaport)</label
       >
       <input
         required
@@ -210,6 +213,42 @@ const save = () => {
         </button>
       </div>
     </div>
+
+    <div class="mb-3">
+      <label for="gender" class="form-label">Drets d'imatge</label>
+      <br>
+      <input type="checkbox" v-model="form.drets">
+      D’acord amb la llei orgànica 1/1982, autoritzes i atorgues el dret i permís per a captar, enregistrar, usar, publicar i distribuir la teva imatge obtinguda durant la mateixa sessió? (En cas de no autoritzar, avisa a una de les organitzadores de l'esdeveniment)
+      <br>
+      <br>
+    </div>
+
+
+
+    <div class="mb-3">
+      <label for="phone" class="form-label">Telèfon de contacte (opcional)</label>
+      <input
+        required
+        type="text"
+        class="form-control"
+        id="sex"
+        v-model="form.phone"
+      />
+      <br>
+      <label for="email" class="form-label">Email de contacte (opcional)</label>
+      <input
+        required
+        type="text"
+        class="form-control"
+        id="sex"
+        v-model="form.email"
+      />
+      <br>
+      Compartint el mail o el telèfon, mostres el teu interès a rebre informació per correu electrònic o a través de la comunitat de whatsapp, respectivament.
+      <br><br>
+      D’acord amb el Reglament (UE) 2016/679 del Parlament Europeu i del Consell de 27 d’abril de 2016 (RGPD), poden fer ús de les teves dades personals Resilience.Earth SCCL, amb la finalitat d’informar-te sobre activitats relacionades amb els seus àmbits respectius.
+    </div>
+
 
     <div class="text-center mt-5 mb-5">
       <div class="d-flex">
