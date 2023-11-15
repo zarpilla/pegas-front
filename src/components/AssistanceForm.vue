@@ -228,7 +228,6 @@ const save = () => {
     <div class="mb-3">
       <label for="phone" class="form-label">Telèfon de contacte (opcional)</label>
       <input
-        required
         type="text"
         class="form-control"
         id="sex"
@@ -237,7 +236,6 @@ const save = () => {
       <br>
       <label for="email" class="form-label">Email de contacte (opcional)</label>
       <input
-        required
         type="text"
         class="form-control"
         id="sex"
