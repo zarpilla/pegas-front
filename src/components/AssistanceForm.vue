@@ -63,7 +63,7 @@ const undo = () => {
 };
 
 const b64toBlob = (b64Data: any, contentType = "", sliceSize = 512) => {
-  const byteCharacters = atob(b64Data.replace('data:image/png;base64,',''));
+  const byteCharacters = atob(b64Data.replace("data:image/png;base64,", ""));
   const byteArrays = [];
 
   for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
@@ -87,7 +87,11 @@ const saveImage = (id: number, signature: string) => {
 
   // append the files to FormData
   // Array.from(Array(fileList.length).keys()).map((x) => {
-  formData.append("files", b64toBlob(signature), `signature-${id.toString()}.png`);
+  formData.append(
+    "files",
+    b64toBlob(signature),
+    `signature-${id.toString()}.png`
+  );
   // });
 
   formData.append("ref", "api::registration.registration");
@@ -200,6 +204,16 @@ const save = () => {
     </div>
 
     <div class="mb-3">
+      <label for="email" class="form-label">Email de contacte</label>
+      <input
+        required
+        type="text"
+        class="form-control"
+        id="sex"
+        v-model="form.email"
+      />
+    </div>
+    <div class="mb-3">
       <label for="gender" class="form-label">Signatura</label>
       <VueSignaturePad
         class="signature-pad"
@@ -216,42 +230,39 @@ const save = () => {
 
     <div class="mb-3">
       <label for="gender" class="form-label">Drets d'imatge</label>
-      <br>
-      <input type="checkbox" v-model="form.drets">
-      D’acord amb la llei orgànica 1/1982, autoritzes i atorgues el dret i permís per a captar, enregistrar, usar, publicar i distribuir la teva imatge obtinguda durant la mateixa sessió? (En cas de no autoritzar, avisa a una de les organitzadores de l'esdeveniment)
-      <br>
-      <br>
+      <br />
+      <input type="checkbox" v-model="form.drets" />
+      D’acord amb la llei orgànica 1/1982, autoritzes i atorgues el dret i
+      permís per a captar, enregistrar, usar, publicar i distribuir la teva
+      imatge obtinguda durant la mateixa sessió? (En cas de no autoritzar, avisa
+      a una de les organitzadores de l'esdeveniment)
+      <br />
+      <br />
     </div>
-
-
 
     <div class="mb-3">
-      <label for="phone" class="form-label">Telèfon de contacte (opcional)</label>
-      <input
-        type="text"
-        class="form-control"
-        id="sex"
-        v-model="form.phone"
-      />
-      <br>
-      <label for="email" class="form-label">Email de contacte (opcional)</label>
-      <input
-        type="text"
-        class="form-control"
-        id="sex"
-        v-model="form.email"
-      />
-      <br>
-      Compartint el mail o el telèfon, mostres el teu interès a rebre informació per correu electrònic o a través de la comunitat de whatsapp, respectivament.
-      <br><br>
-      D’acord amb el Reglament (UE) 2016/679 del Parlament Europeu i del Consell de 27 d’abril de 2016 (RGPD), poden fer ús de les teves dades personals Resilience.Earth SCCL, amb la finalitat d’informar-te sobre activitats relacionades amb els seus àmbits respectius.
-    </div>
+      <label for="phone" class="form-label"
+        >Telèfon de contacte (opcional)</label
+      >
+      <input type="text" class="form-control" id="sex" v-model="form.phone" />
+      <br />
 
+      Compartint el mail o el telèfon, mostres el teu interès a rebre informació
+      per correu electrònic o a través de la comunitat de whatsapp,
+      respectivament.
+      <br /><br />
+      D’acord amb el Reglament (UE) 2016/679 del Parlament Europeu i del Consell
+      de 27 d’abril de 2016 (RGPD), poden fer ús de les teves dades personals
+      Resilience.Earth SCCL, amb la finalitat d’informar-te sobre activitats
+      relacionades amb els seus àmbits respectius.
+    </div>
 
     <div class="text-center mt-5 mb-5">
       <div class="d-flex">
-      <button type="submit" class="ms-auto btn btn-primary">Enviar dades</button>
-    </div>
+        <button type="submit" class="ms-auto btn btn-primary">
+          Enviar dades
+        </button>
+      </div>
     </div>
   </form>
 </template>
@@ -283,7 +294,7 @@ button {
   border: 2px solid #0f89a1;
   border-radius: 50px;
 }
-.btn-white{
+.btn-white {
   background: transparent;
   border: 2px solid #0f89a1;
   border-radius: 50px;
