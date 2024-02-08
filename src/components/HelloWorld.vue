@@ -7,10 +7,10 @@ defineProps<{
 <template>
   <div class="d-flex justify-content-center mt-4 mb-4">
     <div class="w-25 d-none d-md-flex">
-      <img src="@/assets/img/logo-pegas-de-foc-negre.png" class="w-100 text-center" alt="" />
+      <img src="@/assets/img/logo.svg" class="w-100 text-center" alt="" />
     </div>
     <div class="w-50 d-flex d-md-none">
-      <img src="@/assets/img/logo-pegas-de-foc-negre.png" class="w-100 text-center" alt="" />
+      <img src="@/assets/img/logo.svg" class="w-100 text-center" alt="" />
     </div>
   </div>  
 </template>
