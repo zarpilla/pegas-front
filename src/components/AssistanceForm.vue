@@ -18,7 +18,7 @@ const form = reactive({
   birthdate: null,
   municipality: "",
   sex: "",
-  gender: "",
+  gender: null,
   session: "",
   drets: false,
   phone: "",
@@ -37,19 +37,33 @@ const submit = async () => {
       alert("Has d'emplenar la signatura");
       return;
     }
+    if (!checkEmailIsValid(form.email)) {
+      alert("Has d'emplenar un email vàlid");
+      return;
+    }
 
     form.session = props.sessionId;
 
-    const { data } = await service({ requiresAuth: false }).post(
-      "registrations",
-      { data: { ...form } }
-    );
-    if (data && data.data && data.data.id) {
-      saveImage(data.data.id, signature);
+    try {
+      const { data } = await service({ requiresAuth: false }).post(
+        "registrations",
+        { data: { ...form } }
+      );
 
-      emit("submit");
-    } else {
-      alert("S'ha produït un error, prova-ho més tard");
+      if (data && data.data && data.data.id) {
+        saveImage(data.data.id, signature);
+
+        emit("submit");
+      } else {
+        alert("S'ha produït un error, prova-ho més tard");
+      }
+    } catch (error: any) {
+      console.error(error);
+      if (error.response && error.response.data && error.response.data.error && error.response.data.error.message) {
+        alert(error.response.data.error.message);
+      } else {
+        alert("S'ha produït un error, prova-ho més tard");
+      }
     }
   }
 };
@@ -116,6 +130,11 @@ const save = () => {
   }
 };
 
+const checkEmailIsValid = (email: string) => {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
+
 // const activityStore = useActivityStore();
 
 // const activity = ref<any>(null);
@@ -125,10 +144,41 @@ const save = () => {
 //   session.value = ss
 //   activity.value = session.value.attributes.activity.data
 // });
+
+const personChoosed = ref<"already" | "new" | "">("");
+
+const newPerson = () => {};
 </script>
 
 <template>
-  <form class="mt-3" @submit.prevent="submit">
+  <button
+    v-if="personChoosed"
+    class="btn btn-white me-2 mt-4 mb-4"
+    @click="personChoosed = ''"
+  >
+    Enrere
+  </button>
+
+  <div v-if="!personChoosed">
+    <button
+      class="btn btn-w-100 btn-secondary me-4 mt-4 mb-4"
+      @click="personChoosed = 'new'"
+    >
+      És la primera vegada que m'inscric
+    </button>
+    <button
+      class="btn btn-w-100 btn-secondary mt-4 mb-4"
+      @click="personChoosed = 'already'"
+    >
+      Ja m'he inscrit a alguna altra activitat
+    </button>
+  </div>
+
+  <form
+    v-else-if="personChoosed === 'new'"
+    class="mt-3"
+    @submit.prevent="submit"
+  >
     <div class="mb-3">
       <label for="name" class="form-label">Nom</label>
       <input
@@ -265,6 +315,41 @@ const save = () => {
       </div>
     </div>
   </form>
+
+  <form v-else class="mt-3" @submit.prevent="submit">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email de contacte</label>
+      <input
+        required
+        type="text"
+        class="form-control"
+        id="sex"
+        v-model="form.email"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="gender" class="form-label">Signatura</label>
+      <VueSignaturePad
+        class="signature-pad"
+        width="350px"
+        height="250px"
+        ref="signaturePad"
+      />
+      <div class="d-flex">
+        <button class="ms-auto mt-3 btn btn-white" @click.prevent="undo">
+          Desfer signatura
+        </button>
+      </div>
+    </div>
+
+    <div class="text-center mt-5 mb-5">
+      <div class="d-flex">
+        <button type="submit" class="ms-auto btn btn-primary">
+          Enviar dades
+        </button>
+      </div>
+    </div>
+  </form>
 </template>
 
 <style scoped>
@@ -299,5 +384,10 @@ button {
   border: 2px solid #0f89a1;
   border-radius: 50px;
   color: #0f89a1;
+}
+@media screen and (max-width: 768px) {
+  .btn-w-100 {
+    width: 100%;
+  }
 }
 </style>

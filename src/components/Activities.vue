@@ -17,11 +17,12 @@ activityStore.load().then((a:any) => {
         <h2>{{ a.attributes.name }}</h2>
         <p>{{ a.attributes.description }}</p>
         <div v-for="(s, j) in a.attributes.sessions.data" :key="s.id" class="mb-5">
-        <h4>{{ s.attributes.name }}</h4>
-        <p>{{ s.attributes.date }}</p>
-        <RouterLink class="it-link" :to="`/session/${s.attributes.uuid}`">
-            View
-        </RouterLink>
-    </div>
+            <h4>{{ s.attributes.name }}</h4>
+            <p>{{ s.attributes.date }}</p>
+            <p v-if="s.attributes.description" v-html="s.attributes.description"></p>
+            <RouterLink class="it-link" :to="`/session/${s.attributes.uuid}`">
+                View
+            </RouterLink>
+        </div>
     </div>
 </template>

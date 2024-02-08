@@ -34,6 +34,7 @@ const submit = () => {
       <p v-if="session.attributes.showActivity">{{ activity.attributes.description }}</p>
       <h1 class="mt-5">{{ session.attributes.name }}</h1>
       <p v-if="session.attributes.showDate">{{ session.attributes.date }}</p>
+      <p v-if="session.attributes.showDescription" v-html="session.attributes.description"></p>
       <h1 class="mt-5">Inscripció</h1>
       <AssistanceForm @submit="submit" :session-id="session.id" />
     </div>
