@@ -39,7 +39,7 @@ const submit = () => {
       <AssistanceForm @submit="submit" :session-id="session.id" />
     </div>
     <div v-else>
-      <div class="ok text-center mt-5 mb-5 section-ok">
+      <div class="ok ok-image text-center mt-5 mb-5 section-ok">
         <img class="w-75" src="@/assets/img/bgok.png" />
       </div>
       <div class="ok text-center mt-5 mb-5 section-okz">
@@ -48,7 +48,7 @@ const submit = () => {
       <div class="community text-center">
         Ara que ja ets part de la comunitat segueix-nos a
 
-        <div class="row row-social pt-4">
+        <div class="row row-social pt-4 mb-4">
           <div class="col">
             <a href="https://www.instagram.com/pegasdefoc/" target="_blank">
               <i class="fa fa-instagram"></i>
@@ -58,6 +58,7 @@ const submit = () => {
             <a
               href="https://chat.whatsapp.com/JDTxHr5nbNAK5nahKxWf5e"
               target="_blank"
+              class="whatsapp"
             >
               <i class="fa fa-whatsapp"></i>
             </a>
@@ -78,6 +79,9 @@ const submit = () => {
   font-size: 30px;
   font-weight: bold;
 }
+.ok-image {
+  max-width: 400px;
+}
 .fa {
   font-size: 50px;
 }
@@ -87,5 +91,13 @@ const submit = () => {
 }
 .row-social a{
   color: #000;
+  padding-top: 20px;
+  display: block;
+}
+.whatsapp {
+  padding-top: 0px!important;
+}
+.whatsapp .fa{  
+  font-size: 80px;
 }
 </style>
