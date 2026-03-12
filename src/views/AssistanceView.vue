@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LayoutAuthenticated from '@/layouts/LayoutAuthenticated.vue'
 import Assistance from '../components/Assistance.vue'
 import { ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
@@ -16,7 +17,9 @@ watch(() => route.params.activityId, (newValue) => {
 </script>
 
 <template>
-  <main>
-    <Assistance v-if="sessionId" :session-id="sessionId"></Assistance>
-  </main>
+  <LayoutAuthenticated>
+    <main>
+      <Assistance v-if="sessionId" :session-id="sessionId"></Assistance>
+    </main>
+  </LayoutAuthenticated>
 </template>

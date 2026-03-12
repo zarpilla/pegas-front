@@ -5,9 +5,8 @@ export default ({ requiresAuth = false, multipart = false } = {}) => {
   options.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:1337'
 
   if (requiresAuth) {
-    const jwt = localStorage.getItem('jwt')
+    const jwt = localStorage.getItem('user.jwt')
     if (jwt) {
-      // const user = JSON.parse(userFromStorage)
       options.headers = { Authorization: `Bearer ${jwt}` }
     }
   }
