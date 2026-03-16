@@ -36,7 +36,7 @@ const router = createRouter({
       path: '/assistance/:sessionId',
       name: 'assistance-session-id',
       component: () => import('../views/AssistanceView.vue'),
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: false }
     }
   ]
 })

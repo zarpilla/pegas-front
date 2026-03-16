@@ -52,14 +52,6 @@ const downloadSessionRegistrations = async () => {
     </p>
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4>{{ session.attributes.name }}</h4>
-      <button 
-        v-if="authStore.isAuthenticated()"
-        class="btn btn-sm btn-outline-secondary" 
-        @click="downloadSessionRegistrations"
-        title="Descarregar inscripcions de la sessió"
-      >
-        📥 Descarregar CSV
-      </button>
     </div>
     <p v-if="session.attributes.showDate">{{ session.attributes.date }}</p>
     <p v-if="session.attributes.description" v-html="session.attributes.description"></p>

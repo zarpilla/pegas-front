@@ -17,9 +17,7 @@ watch(() => route.params.activityId, (newValue) => {
 </script>
 
 <template>
-  <LayoutAuthenticated>
-    <main>
-      <Assistance v-if="sessionId" :session-id="sessionId"></Assistance>
-    </main>
-  </LayoutAuthenticated>
+  <main>
+    <Assistance v-if="sessionId" :session-id="sessionId"></Assistance>
+  </main>
 </template>
